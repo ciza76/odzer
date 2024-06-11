@@ -1,0 +1,51 @@
+version: "3.7"
+
+services:
+
+  nginx:
+    container_name: odzer-web
+    image: nginx:latest
+    volumes:
+      - ./:/app
+      - ./docker/nginx:/etc/nginx/conf.d
+    links:
+      - php
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.odzer.rule=Host(`odzer.localhost`)"
+    environment:
+      - PHP_SERVER=odzer-php:9000
+    networks:
+      - traefik-network
+    working_dir: '/app/'
+
+  php:
+    build:
+      context: ./
+      dockerfile: docker/php/Dockerfile
+    container_name: odzer-php
+    volumes:
+      - ./:/app
+    networks:
+      - traefik-network
+    working_dir: '/app/'
+    depends_on:
+      - db
+
+  db:
+    container_name: odzer-db
+    image: mysql:latest
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: hesloheslo
+    volumes:
+      - ./myphotos_db.sql:/docker-entrypoint-initdb.d/myphotos_db.sql
+    networks:
+      - traefik-network
+
+networks:
+  traefik-network:
+    external: true
+

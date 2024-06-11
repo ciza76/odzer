@@ -3,6 +3,9 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+create database mvc_db;
+use mvc_db;
+
 --
 -- Database: `stao04`
 --
@@ -190,3 +193,5 @@ ALTER TABLE `photos`
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
+
+use mvc_db;

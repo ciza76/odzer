@@ -2,8 +2,7 @@
 
 defined('ROOTPATH') OR exit('Access Denied!');
 
-if((empty($_SERVER['SERVER_NAME']) && php_sapi_name() == 'cli') || (!empty($_SERVER['SERVER_NAME']) && $_SERVER['SERVER_NAME'] == 'mysql:host=127.0.0.1'))
-{
+if ((empty($_SERVER['SERVER_NAME']) && php_sapi_name() == 'cli') || (!empty($_SERVER['SERVER_NAME']) && $_SERVER['SERVER_NAME'] == 'mysql:host=127.0.0.1')) {
     /** database config **/
     define('DBNAME', 'mvc_db');
     define('DBHOST', 'localhost');
@@ -13,8 +12,17 @@ if((empty($_SERVER['SERVER_NAME']) && php_sapi_name() == 'cli') || (!empty($_SER
 
     define('ROOT', 'https://eso.vse.cz/~stao04/stanzinFotoGallery/public');
 
-}else
-{
+}
+elseif ((!empty($_SERVER['SERVER_NAME']) && $_SERVER['SERVER_NAME'] == 'odzer.localhost')) {
+    /** database config **/
+    define('DBUSER', 'root');
+    define('DBPASS', 'hesloheslo');
+    define('DBDRIVER', 'mysql');
+    define('DSN', "mysql:host=odzer-db;dbname=mvc_db");
+    define('ROOT', 'http://odzer.localhost');
+
+}
+else {
     /** database config **/
     define('DBNAME', 'stao04');
     define('DBHOST', '127.0.0.1');
