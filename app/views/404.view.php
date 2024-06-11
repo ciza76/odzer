@@ -1,0 +1,1 @@
+<h1>Erorr 404 - Stánka nenalezena! </h1>
