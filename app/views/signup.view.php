@@ -10,7 +10,9 @@
 		<div><small class="text-danger"><?=$user->getError('email')?></small></div>
         <input type="password" class="my-3 form-control" value="<?=old_value('password')?>" name="password" placeHolder="Password">
         <div><small class="text-danger"><?=$user->getError('password')?></small></div>
-		<button class="btn btn-primary my-3">Registrovat se</button>
+        <input type="password" class="my-3 form-control" value="<?=old_value('password2')?>" name="password2" placeHolder="Password again">
+        <div><small class="text-danger"><?=$user->getError('password2')?></small></div>
+        <button class="btn btn-primary my-3">Registrovat se</button>
 	</form>
 </div>
 <?php $this->view('includes/footer',$data); ?>

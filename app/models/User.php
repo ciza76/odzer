@@ -57,10 +57,15 @@ class User
 			'alpha',
 			'required',
 		],
-		'password' => [
-			'not_less_than_8_chars',
-			'required',
-		],
+        'password' => [
+            'password2' => 'equal',
+            'not_less_than_8_chars',
+            'required',
+        ],
+        'password2' => [
+            'not_less_than_8_chars',
+            'required',
+        ],
 	];
 
 	protected $onUpdateValidationRules = [
@@ -78,10 +83,15 @@ class User
 			'alpha',
 			'required',
 		],
-		'password' => [
-			'not_less_than_8_chars',
-			'required',
-		],
+        'password' => [
+            'password2' => 'equal',
+            'not_less_than_8_chars',
+            'required',
+        ],
+        'password2' => [
+            'not_less_than_8_chars',
+            'required',
+        ],
 	];
 
 	public function signup($data)

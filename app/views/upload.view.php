@@ -89,7 +89,10 @@
 			document.querySelector(".progress").classList.remove('d-none');
 
 			myform.append('title',document.querySelector("form .title").value);
-			let files = document.querySelector("form .images").files;
+            let files = [];
+            if (document.querySelectorAll("form .images").length > 0) {
+                files = document.querySelector("form .images").files;
+            }
 			let allowed = ['image/jpeg','image/jpg','image/png','image/webp'];
 
 			let z = 0;

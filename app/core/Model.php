@@ -173,7 +173,7 @@ Trait Model
 				if(!isset($data[$column]))
 					continue;
 
-				foreach ($rules as $rule) {
+				foreach ($rules as $kRule => $rule) {
 				
 					switch ($rule) {
 						case 'required':
@@ -234,6 +234,12 @@ Trait Model
 								}
 							}
 							break;
+
+                        case 'equal':
+                            if (isset($data[$kRule]) && $data[$kRule] !== $data[$column]) {
+                                $this->errors[$column] = sprintf('%s not equal %s', ucfirst($column), ucfirst($kRule));
+                            }
+                            break;
 						
 						default:
 							$this->errors['rules'] = "The rule ". $rule . " was not found!";
