@@ -27,7 +27,7 @@ class Photos
 		$photo->limit = $limit;
 		$photo->offset = $offset;
 
-		$data['rows'] = $photo->findAll();
+		$data['rows'] = $photo->findAllForCategories();
 		$data['image'] = new Image;
 		$data['like'] = new Like;
 		$data['comment'] = new Comment;

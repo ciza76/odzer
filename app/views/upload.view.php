@@ -6,7 +6,7 @@
 		<?php if($mode == 'new' || (($mode == 'edit' || $mode == 'delete') && $row)):?>
 
 			<?php if($mode == 'delete'):?>
-				<div class="alert alert-danger text-center">Skutečně chcete danou fotografii Odstanit?!</div>
+				<div class="alert alert-danger text-center">Skutečně chcete danou fotogalerii Odstanit?!</div>
 			<?php endif?>
 
 			<form onsubmit="submitForm(event)" method="post" enctype="multipart/form-data">

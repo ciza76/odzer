@@ -19,10 +19,15 @@ class Photo
 		$req = new \Core\Request;
 		$data['ses'] = $ses = new \Core\Session;
 
-		$query = "select photos.*, users.username from photos join users on users.id = photos.user_id where photos.id = :id limit 1";
-		$data['row'] = $row = $photo->get_row($query,['id'=>$id]);
-		if($data['row']){
-			$data['title'] = ucfirst($data['row']->title);
+		$query = "select c.id as category_id, c.title, p.*, u.username 
+                    from photos p 
+                    join users u on u.id = p.user_id
+                    join categories c on c.id = p.category_id
+                    where c.id = :id";
+		$data['rows'] = $row = $photo->get_rows($query,['id'=>$id]);
+		if($data['rows']){
+			$data['title'] = ucfirst($data['rows'][0]->title);
+            $data['categoryId'] = ucfirst($data['rows'][0]->category_id);
 		}
 
 		$comment = new Comment;

@@ -19,8 +19,14 @@ Trait Model
 
 	public function findAll()
 	{
-	 
-		$query = "select * from $this->table order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
+        $table = $this->table;
+        if (property_exists($this, "tableJoin")) {
+            $table = sprintf('%s %s', $this->table, $this->tableJoin);
+        }
+        if (property_exists($this, "childOrderColumn")) {
+            $this->order_column = $this->childOrderColumn;
+        }
+		$query = "select * from $table order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
 
 		return $this->query($query);
 	}

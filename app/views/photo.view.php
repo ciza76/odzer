@@ -3,25 +3,23 @@
 	<div class="p-4 text-center"><h3>Detailní pohled na vybrané fotografie</h3></div>
 	<div class="row p-4 justify-content-center">
 
-		<?php if(!empty($row)):?>
+		<?php if(!empty($rows)):?>
 			<div class="col-sm-12 text-center bg-light">
-					<div class="card-header"><h4><?=esc($row->title)?></h4></div>
-					<div class="card-header"><a href="<?=ROOT?>/profile/<?=$row->user_id?>"><i>By: <?=esc($row->username)?></i></a></div>
-					<img src="<?=get_image($row->image)?>" class="img-thumbnail" style="sobject-fit: cover;widsth:250px;hseight:250px"  >
-					<img src="<?=get_image($row->image1)?>" class="img-thumbnail" style="sobject-fit: cover;widsth:250px;hseight:250px"  >
-					<img src="<?=get_image($row->image2)?>" class="img-thumbnail" style="sobject-fit: cover;widsth:250px;hseight:250px"  >
-					<img src="<?=get_image($row->image3)?>" class="img-thumbnail" style="sobject-fit: cover;widsth:250px;hseight:250px"  >
-				<br>
-
-				<?php if($ses->is_logged_in() && $ses->user('id') == $row->user_id):?>
-					<a href="<?=ROOT?>/upload/edit/<?=$row->id?>">
-						Edit Image
-					</a>
-					|
-					<a href="<?=ROOT?>/upload/delete/<?=$row->id?>">
-						Delete Image
-					</a>
-				<?php endif?>
+					<div class="card-header"><h4><?=esc($title)?></h4></div>
+                    <?php foreach($rows as $row):?>
+                        <div class="card-header"><a href="<?=ROOT?>/profile/<?=$row->user_id?>"><i>By: <?=esc($row->username)?></i></a></div>
+                        <img src="<?=get_image($row->image)?>" class="img-thumbnail" style="sobject-fit: cover;widsth:250px;hseight:250px"  >
+					<?php endforeach;?>
+                <br />
+                <?php if($ses->is_logged_in() && $ses->user('id') == $row->user_id):?>
+                    <a href="<?=ROOT?>/upload/edit/<?=$categoryId?>">
+                        Edit Gallery
+                    </a>
+                    |
+                    <a href="<?=ROOT?>/upload/delete/<?=$categoryId?>">
+                        Delete Gallery
+                    </a>
+                <?php endif?>
 			</div>
 
 			<div class="border p-2 mx-auto row bg-light" style="max-width:1000px">

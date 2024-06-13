@@ -71,41 +71,82 @@ INSERT INTO `likes` (`id`, `user_id`, `post_id`, `disabled`) VALUES
 -- Table structure for table `photos`
 --
 
+CREATE TABLE `categories`
+(
+    `id` int(11) NOT NULL,
+    `user_id` int(11) NOT NULL DEFAULT 0,
+    `title` varchar(100) DEFAULT NULL,
+    `date_created` datetime DEFAULT NULL,
+    `date_updated` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 CREATE TABLE `photos` (
   `id` int(11) NOT NULL,
-  `title` varchar(100) DEFAULT NULL,
+  `category_id` int(11) NOT NULL DEFAULT 0,
   `user_id` int(11) NOT NULL DEFAULT 0,
   `image` varchar(1024) DEFAULT NULL,
   `date_created` datetime DEFAULT NULL,
-  `date_updated` datetime DEFAULT NULL,
-  `image1` varchar(1024) DEFAULT NULL,
-  `image2` varchar(1024) DEFAULT NULL,
-  `image3` varchar(1024) DEFAULT NULL
+  `date_updated` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `photos`
 --
+INSERT INTO `categories` (`id`, `title`, `user_id`) VALUES
+(1, 'image title', 1),
+(2, 'Random pictures 2', 1),
+(3, 'Photo set 1', 1),
+(4, 'Photo set 2', 1),
+(5, 'My aunt2', 2),
+(7, 'My sister', 1),
+(8, 'Surprise! surprise', 2),
+(9, 'Some photo', 2),
+(10, 'Worker', 2),
+(11, 'Random pictures', 1),
+(12, 'Album 2', 1),
+(13, 'Another post with multiple images', 1),
+(14, 'Multiple images', 1),
+(15, 'Post 1', 1),
+(16, 'Post 2', 1),
+(17, 'Post 3', 1),
+(18, 'Post 4', 1),
+(19, 'Images', 1);
 
-INSERT INTO `photos` (`id`, `title`, `user_id`, `image`, `date_created`, `date_updated`, `image1`, `image2`, `image3`) VALUES
-(1, 'image title', 1, 'uploads/168476.jpg', '2024-06-08 16:07:26', NULL, NULL, NULL, NULL),
-(2, 'Random pictures 2', 1, 'uploads/1684769271791a047636136702e25ba1096b11cfe7.jpg', '2024-06-08 17:27:51', NULL, NULL, NULL, NULL),
-(3, 'Photo set 1', 1, 'uploads/16847692891c59efd01451b880.jpg', '2024-06-08 17:28:09', NULL, NULL, NULL, NULL),
-(4, 'Photo set 2', 1, 'uploads/1684769380alicia-keys.jpg', '2024-06-08 17:29:40', NULL, NULL, NULL, NULL),
-(5, 'My aunt2', 2, 'uploads/1684774660excited-smiling-curly-haired-girl-showing-credit-card-paying-online-order-using-smartphone_176420-20206.jpg', '2024-06-08 17:58:26', '2023-05-22 18:57:40', NULL, NULL, NULL),
-(7, 'My sister', 1, 'uploads/1684776744young-beautiful-woman-with-curly-hair-isolated_273609-48109.png', '2024-06-08 19:32:24', NULL, NULL, NULL, NULL),
-(8, 'Surprise! surprise', 2, 'uploads/1684777275photo-stupefied-dark-haired-girl-with-bated-breath-stares-with-bugged-eyes-being-shocked-by-high-prices_273609-17559.jpg', '2024-06-08 19:41:15', '2023-05-22 19:41:31', NULL, NULL, NULL),
-(9, 'Some photo', 2, 'uploads/1684785097curly-man-with-broad-smile-shows-perfect-teeth-being-amused-by-interesting-talk-has-bushy-curly-dark-hair-stands-indoor-against-white-blank-wall_273609-17092.jpg', '2024-06-08 21:51:37', NULL, NULL, NULL, NULL),
-(10, 'Worker', 2, 'uploads/1684785228builder-young-man-construction-uniform-safety-helmet-holding-wrench-pliers-looking-confused-with-hand-his-head-mistake-standing-blue-background_141793-140410.png', '2024-06-08 21:53:48', NULL, NULL, NULL, NULL),
-(11, 'Random pictures', 1, 'uploads/1685399861confident-young-handsome-man-looking-camera-doing-stop-gesture-isolated-white-background_141793-131989.png', '2024-06-08 00:37:41', NULL, '', '', ''),
-(12, 'Album 2', 1, '', '2023-05-30 00:43:27', NULL, 'uploads/1685400207confident-young-handsome-man-looking-camera-doing-stop-gesture-isolated-white-background_141793-131989.png', '', ''),
-(13, 'Another post with multiple images', 1, 'uploads/1685400624close-up-shot-pretty-woman-with-perfect-teeth-dark-clean-skin-having-rest-indoors-smiling-happily-after-received-good-positive-news_273609-1248.jpg', '2024-06-08 00:50:24', NULL, 'uploads/1685400625confident-attractive-caucasian-guy-beige-pullon-smiling-broadly-while-standing-against-gray_176420-44508.jpg', 'uploads/1685400625confident-young-handsome-man-looking-camera-doing-stop-gesture-isolated-white-background_141793-131989.png', 'uploads/1685400625curly-man-with-broad-smile-shows-perfect-teeth-being-amused-by-interesting-talk-has-bushy-curly-dark-hair-stands-indoor-against-white-blank-wall_273609-17092.jpg'),
-(14, 'Multiple images', 1, 'uploads/1685400842portrait-shocked-startled-adult-man-stares-bugged-eyes-camera-hears-big-news-dressed-casual-jumper-isolated-white-background-concerned-young-guy-feels-very-surprised-poses-indoor_273609-56819.jpg', '2024-06-08 00:54:02', NULL, 'uploads/1685400842positive-male-with-beard-mustache-blinks-with-eyes-smiles-grins-has-good-mood-after-noisy-party-with-friends_273609-8657.jpg', '', ''),
-(15, 'Post 1', 1, 'uploads/1685401006young-beautiful-woman-with-curly-hair-isolated_273609-48109.png', '2023-05-30 00:56:46', NULL, 'uploads/1685401006young-woman-with-round-glasses-yellow-sweater_273609-7091.jpg', '', ''),
-(16, 'Post 2', 1, 'uploads/1685401022curly-man-with-broad-smile-shows-perfect-teeth-being-amused-by-interesting-talk-has-bushy-curly-dark-hair-stands-indoor-against-white-blank-wall_273609-17092.jpg', '2024-06-08 00:57:02', NULL, 'uploads/1685401022excited-smiling-curly-haired-girl-showing-credit-card-paying-online-order-using-smartphone_176420-20206.jpg', 'uploads/1685401022funny-curious-man-makes-grimace-purses-lips-looks-doubtfully_273609-16678.jpg', ''),
-(17, 'Post 3', 1, 'uploads/1685401038waist-up-portrait-handsome-serious-unshaven-male-keeps-hands-together-dressed-dark-blue-shirt-has-talk-with-interlocutor-stands-against-white-wall-self-confident-man-freelancer_273609-16320.jpg', '2024-06-08 00:57:18', NULL, 'uploads/1685401038young-bearded-man-with-striped-shirt_273609-5677.jpg', 'uploads/1685401038young-beautiful-woman-with-curly-hair-isolated_273609-48109.png', 'uploads/1685401039young-woman-with-round-glasses-yellow-sweater_273609-7091.jpg'),
-(18, 'Post 4', 1, 'uploads/1685401081builder-young-man-construction-uniform-safety-helmet-holding-wrench-pliers-looking-confused-with-hand-his-head-mistake-standing-blue-background_141793-140410.png', '2024-06-08 00:58:01', NULL, 'uploads/1685401082candid-shot-serious-european-lady-makes-shush-gesture-keesp-index-finger-lips_273609-44692.jpg', 'uploads/1685401082cheerful-woman-looking-camera_23-2147774837.png', 'uploads/1685401082close-up-portrait-attractive-man-with-afro-hairstyle-stubble-wears-orange-anorak_273609-8595.jpg'),
-(19, 'Images', 1, 'uploads/1685401177indoor-shot-positive-good-looking-caucasian-blond-man-with-beard-moustache-smirking_176420-17146.jpg', '2024-06-08 00:59:37', NULL, 'uploads/1685401177indoor-shot-worried-impatient-european-male-shirt_176420-24212.jpg', 'uploads/1685401177joyous-friendly-looking-smiling-girl-points-aside-with-happy-expression-toothy-smile-pleased-show-awesome-advertisement_273609-33977.jpg', '');
+INSERT INTO `photos` (`id`, `category_id`, `user_id`, `image`, `date_created`, `date_updated`) VALUES
+(1, 1, 1, 'uploads/168476.jpg', '2024-06-08 16:07:26', NULL),
+(2, 2, 1, 'uploads/1684769271791a047636136702e25ba1096b11cfe7.jpg', '2024-06-08 17:27:51', NULL),
+(3, 3, 1, 'uploads/16847692891c59efd01451b880.jpg', '2024-06-08 17:28:09', NULL),
+(4, 4, 1, 'uploads/1684769380alicia-keys.jpg', '2024-06-08 17:29:40', NULL),
+(5, 5, 2, 'uploads/1684774660excited-smiling-curly-haired-girl-showing-credit-card-paying-online-order-using-smartphone_176420-20206.jpg', '2024-06-08 17:58:26', '2023-05-22 18:57:40'),
+(7, 7, 1, 'uploads/1684776744young-beautiful-woman-with-curly-hair-isolated_273609-48109.png', '2024-06-08 19:32:24', NULL),
+(8, 8, 2, 'uploads/1684777275photo-stupefied-dark-haired-girl-with-bated-breath-stares-with-bugged-eyes-being-shocked-by-high-prices_273609-17559.jpg', '2024-06-08 19:41:15', '2023-05-22 19:41:31'),
+(9, 9, 2, 'uploads/1684785097curly-man-with-broad-smile-shows-perfect-teeth-being-amused-by-interesting-talk-has-bushy-curly-dark-hair-stands-indoor-against-white-blank-wall_273609-17092.jpg', '2024-06-08 21:51:37', NULL),
+(10, 10, 2, 'uploads/1684785228builder-young-man-construction-uniform-safety-helmet-holding-wrench-pliers-looking-confused-with-hand-his-head-mistake-standing-blue-background_141793-140410.png', '2024-06-08 21:53:48', NULL),
+(11, 10, 2, 'uploads/1684785228builder-young-man-construction-uniform-safety-helmet-holding-wrench-pliers-looking-confused-with-hand-his-head-mistake-standing-blue-background_141793-140410.png', '2024-06-08 21:53:48', NULL),
+(12, 11, 1, 'uploads/1685399861confident-young-handsome-man-looking-camera-doing-stop-gesture-isolated-white-background_141793-131989.png', '2024-06-08 00:37:41', NULL),
+(13, 12, 1, 'uploads/1685400207confident-young-handsome-man-looking-camera-doing-stop-gesture-isolated-white-background_141793-131989.png', '2023-05-30 00:43:27', NULL),
+(14, 13, 1, 'uploads/1685400624close-up-shot-pretty-woman-with-perfect-teeth-dark-clean-skin-having-rest-indoors-smiling-happily-after-received-good-positive-news_273609-1248.jpg', '2024-06-08 00:50:24', NULL),
+(15, 13, 1, 'uploads/1685400625confident-attractive-caucasian-guy-beige-pullon-smiling-broadly-while-standing-against-gray_176420-44508.jpg', '2024-06-08 00:50:24', NULL),
+(16, 13, 1, 'uploads/1685400625confident-young-handsome-man-looking-camera-doing-stop-gesture-isolated-white-background_141793-131989.png', '2024-06-08 00:50:24', NULL),
+(17, 13, 1, 'uploads/1685400625curly-man-with-broad-smile-shows-perfect-teeth-being-amused-by-interesting-talk-has-bushy-curly-dark-hair-stands-indoor-against-white-blank-wall_273609-17092.jpg', '2024-06-08 00:50:24', NULL),
+(18, 14, 1, 'uploads/1685400842portrait-shocked-startled-adult-man-stares-bugged-eyes-camera-hears-big-news-dressed-casual-jumper-isolated-white-background-concerned-young-guy-feels-very-surprised-poses-indoor_273609-56819.jpg', '2024-06-08 00:54:02', NULL),
+(19, 14, 1, 'uploads/1685400842positive-male-with-beard-mustache-blinks-with-eyes-smiles-grins-has-good-mood-after-noisy-party-with-friends_273609-8657.jpg', '2024-06-08 00:54:02', NULL),
+(20, 15, 1, 'uploads/1685401006young-beautiful-woman-with-curly-hair-isolated_273609-48109.png', '2023-05-30 00:56:46', NULL),
+(21, 15, 1, 'uploads/1685401006young-woman-with-round-glasses-yellow-sweater_273609-7091.jpg', '2023-05-30 00:56:46', NULL),
+(22, 16, 1, 'uploads/1685401022curly-man-with-broad-smile-shows-perfect-teeth-being-amused-by-interesting-talk-has-bushy-curly-dark-hair-stands-indoor-against-white-blank-wall_273609-17092.jpg', '2024-06-08 00:57:02', NULL),
+(23, 16, 1, 'uploads/1685401022excited-smiling-curly-haired-girl-showing-credit-card-paying-online-order-using-smartphone_176420-20206.jpg', '2024-06-08 00:57:02', NULL),
+(24, 16, 1, 'uploads/1685401022funny-curious-man-makes-grimace-purses-lips-looks-doubtfully_273609-16678.jpg', '2024-06-08 00:57:02', NULL),
+(25, 17, 1, 'uploads/1685401038waist-up-portrait-handsome-serious-unshaven-male-keeps-hands-together-dressed-dark-blue-shirt-has-talk-with-interlocutor-stands-against-white-wall-self-confident-man-freelancer_273609-16320.jpg', '2024-06-08 00:57:18', NULL),
+(26, 17, 1, 'uploads/1685401038young-bearded-man-with-striped-shirt_273609-5677.jpg', '2024-06-08 00:57:18', NULL),
+(27, 17, 1, 'uploads/1685401038young-beautiful-woman-with-curly-hair-isolated_273609-48109.png', '2024-06-08 00:57:18', NULL),
+(28, 17, 1, 'uploads/1685401039young-woman-with-round-glasses-yellow-sweater_273609-7091.jpg', '2024-06-08 00:57:18', NULL),
+(29, 18, 1, 'uploads/1685401081builder-young-man-construction-uniform-safety-helmet-holding-wrench-pliers-looking-confused-with-hand-his-head-mistake-standing-blue-background_141793-140410.png', '2024-06-08 00:58:01', NULL),
+(30, 18, 1, 'uploads/1685401082candid-shot-serious-european-lady-makes-shush-gesture-keesp-index-finger-lips_273609-44692.jpg', '2024-06-08 00:58:01', NULL),
+(31, 18, 1, 'uploads/1685401082cheerful-woman-looking-camera_23-2147774837.png', '2024-06-08 00:58:01', NULL),
+(32, 18, 1, 'uploads/1685401082close-up-portrait-attractive-man-with-afro-hairstyle-stubble-wears-orange-anorak_273609-8595.jpg', '2024-06-08 00:58:01', NULL),
+(33, 19, 1, 'uploads/1685401177indoor-shot-positive-good-looking-caucasian-blond-man-with-beard-moustache-smirking_176420-17146.jpg', '2024-06-08 00:59:37', NULL),
+(34, 19, 1, 'uploads/1685401177indoor-shot-worried-impatient-european-male-shirt_176420-24212.jpg', '2024-06-08 00:59:37', NULL),
+(35, 19, 1, 'uploads/1685401177joyous-friendly-looking-smiling-girl-points-aside-with-happy-expression-toothy-smile-pleased-show-awesome-advertisement_273609-33977.jpg', '2024-06-08 00:59:37', NULL);
 
 -- --------------------------------------------------------
 
@@ -157,7 +198,12 @@ ALTER TABLE `likes`
 --
 ALTER TABLE `photos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `category_id` (`category_id`);
+
+ALTER TABLE `categories`
+    ADD PRIMARY KEY (`id`),
+    ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `users`
@@ -185,7 +231,10 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+ALTER TABLE `categories`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`
